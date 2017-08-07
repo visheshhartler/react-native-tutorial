@@ -23,7 +23,8 @@ class AlbumList extends Component {
   }
 
   renderAlbums() { 
-    return this.state.albums.map(album => <Text>{album.title}</Text>); 
+    //Added Key property for Unique ID
+    return this.state.albums.map(album => <Text key={album.title}>{album.title}</Text>); 
   }
 
   render() {
