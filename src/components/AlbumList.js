@@ -11,7 +11,11 @@ class AlbumList extends Component {
   //Do the HTTP request to get the JSON data
   this.getList();
   }
-
+  
+  /**
+   * Function to get the data from the API and 
+   * set it to the component state so it can trigger the render
+   */
   getList() {
     console.log('component will mount called');
     fetch('https://rallycoding.herokuapp.com/api/music_albums')
@@ -21,12 +25,18 @@ class AlbumList extends Component {
       this.setState({ albums: responseData });
     }));
   }
-
+  
+  /**
+   * Function to map the state album to the text
+   */
   renderAlbums() { 
     //Added Key property for Unique ID
     return this.state.albums.map(album => <Text key={album.title}>{album.title}</Text>); 
   }
 
+  /**
+   * mandatory function to render the component it should always return some JSX
+   */
   render() {
     //Checking the set state call response
     console.log(this.state);
