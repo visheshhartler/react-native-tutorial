@@ -1,6 +1,7 @@
 //Import statments for the dependencies
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
+import AlbumDetail from './albumDetail';
 
 //View construction of the component
 class AlbumList extends Component {
@@ -31,7 +32,7 @@ class AlbumList extends Component {
    */
   renderAlbums() { 
     //Added Key property for Unique ID
-    return this.state.albums.map(album => <Text key={album.title}>{album.title}</Text>); 
+    return this.state.albums.map(album => <AlbumDetail key={album.title} album={album} />); 
   }
 
   /**
