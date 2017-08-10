@@ -1,6 +1,6 @@
 //Import statments for the dependencies
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { ScrollView } from 'react-native';
 import AlbumDetail from './albumDetail';
 
 //View construction of the component
@@ -42,9 +42,9 @@ class AlbumList extends Component {
     //Checking the set state call response
     console.log(this.state);
     return (
-      <View>
+      <ScrollView>
         {this.renderAlbums()}
-      </View>
+      </ScrollView>
     );
   }
 }
