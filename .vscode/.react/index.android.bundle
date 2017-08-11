@@ -47705,7 +47705,8 @@ var AlbumDetail = function AlbumDetail(_ref) {
     var thumbnail_image = album.thumbnail_image,
         artist = album.artist,
         title = album.title,
-        image = album.image;
+        image = album.image,
+        url = album.url;
     var thumbnailStyle = styles.thumbnailStyle,
         headerContentStyle = styles.headerContentStyle,
         thumbnailContainerStyle = styles.thumbnailContainerStyle,
@@ -47798,6 +47799,19 @@ var AlbumDetail = function AlbumDetail(_ref) {
                 }
             },
             _react2.default.createElement(_Button2.default, {
+                onPress: function onPress() {
+                    return _reactNative.Linking.canOpenURL(url).then(function (supported) {
+                        if (!supported) {
+                            console.log('Can\'t handle url: ' + url);
+                        } else {
+                            return _reactNative.Linking.openURL(url);
+                        }
+                    }).catch(function (err) {
+                        return console.error('An error occurred', err);
+                    });
+                },
+
+                buttonText: 'Buy',
                 __source: {
                     fileName: _jsxFileName,
                     lineNumber: 37
@@ -47924,15 +47938,15 @@ var _react2 = babelHelpers.interopRequireDefault(_react);
 
 var _reactNative = require(45            ); // 45 = react-native
 
-var Button = function Button() {
+var Button = function Button(_ref) {
+    var onPress = _ref.onPress,
+        buttonText = _ref.buttonText;
     var buttonStyle = styles.buttonStyle,
         textStyle = styles.textStyle;
 
     return _react2.default.createElement(
         _reactNative.TouchableOpacity,
-        { style: buttonStyle, onPress: function onPress() {
-                return console.log('pressed');
-            }, __source: {
+        { style: buttonStyle, onPress: onPress, __source: {
                 fileName: _jsxFileName,
                 lineNumber: 7
             }
@@ -47944,7 +47958,7 @@ var Button = function Button() {
                     lineNumber: 8
                 }
             },
-            'Click Me'
+            buttonText
         )
     );
 };

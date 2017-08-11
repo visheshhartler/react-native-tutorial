@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, Linking } from 'react-native';
 import Card from './Card';
 import CardSection from './CardSection';
 import Button from './Button';
 
 const AlbumDetail = ({ album }) => {
-    const { thumbnail_image, artist, title, image } = album;
+    const { thumbnail_image, artist, title, image, url } = album;
     const { thumbnailStyle, 
         headerContentStyle, 
         thumbnailContainerStyle,
@@ -34,7 +34,17 @@ const AlbumDetail = ({ album }) => {
              </CardSection>
 
              <CardSection>
-                <Button />
+                <Button 
+                 onPress={() => Linking.canOpenURL(url).then(supported => {
+                    if (!supported) {
+                      console.log(`Can't handle url: ${url}`);
+                    } else {
+                      return Linking.openURL(url);
+                    }
+                  }).catch(err => console.error('An error occurred', err))} 
+
+                 buttonText={'Buy'}
+                />
              </CardSection>
         </Card>
     );
